@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>E-Hospital Management System</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: url('https://source.unsplash.com/KQfxVDHGCUg/1600x900') no-repeat center center/cover; color: white; }
+        .navbar { background: rgba(0, 123, 255, 0.8); padding: 15px; }
+        .btn { background: #28A745; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; }
+        .step { background: white; padding: 20px; max-width: 400px; margin: 50px auto; border-radius: 10px; color: black; }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="navbar"><h2 class="logo">E-HOSPITAL</h2></div>
+
+    <!-- Step 1: Login -->
+    <div class="step" id="loginStep">
+        <h2>Login</h2>
+        <form onsubmit="nextStep('loginStep', 'receptionStep'); return false;">
+            <input type="email" placeholder="Enter email" required>
+            <input type="password" placeholder="Enter password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+
+    <!-- Step 2: Reception -->
+    <div class="step" id="receptionStep" style="display: none;">
+        <h2>Patient Reception</h2>
+        <form onsubmit="nextStep('receptionStep', 'consultationStep'); return false;">
+            <input type="text" id="patientName" placeholder="Patient Name" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="number" id="weight" placeholder="Weight (kg)" required>
+            <button type="submit" class="btn">Next: Consultation</button>
+        </form>
+    </div>
+
+    <!-- Step 3: Consultation -->
+    <div class="step" id="consultationStep" style="display: none;">
+        <h2>Doctor Consultation</h2>
+        <form onsubmit="nextStep('consultationStep', 'reviewStep'); return false;">
+            <textarea id="symptoms" placeholder="Enter Symptoms" required></textarea>
+            <button type="submit" class="btn">Next: Doctor's Review</button>
+        </form>
+    </div>
+
+    <!-- Step 4: Doctor's Review -->
+    <div class="step" id="reviewStep" style="display: none;">
+        <h2>Doctor's Review</h2>
+        <p><b>Patient Name:</b> <span id="reviewPatient"></span></p>
+        <textarea id="reviewSymptoms"></textarea>
+        <button class="btn" onclick="approvePrescription()">Approve</button>
+        <button class="btn reject" onclick="restart()">Reject & Restart</button>
+    </div>
+
+    <!-- Step 5: Medication -->
+    <div class="step" id="medicationStep" style="display: none;">
+        <h2>Medication Prescription</h2>
+        <p><b>Patient Name:</b> <span id="patientDisplay"></span></p>
+        <p><b>Suggested Treatment:</b> <span id="medicationText"></span></p>
+        <button class="btn" onclick="nextStep('medicationStep', 'goodbyeStep')">Finish</button>
+    </div>
+
+    <!-- Step 6: Goodbye Message -->
+    <div class="step" id="goodbyeStep" style="display: none;">
+        <h2>Thank You!</h2>
+        <p>Thank you for using our AI-powered hospital assistant. Wishing you a quick recovery! Stay healthy!</p>
+        <button class="btn" onclick="restart()">Return to Home</button>
+    </div>
+
+    <script>
+        function nextStep(current, next) {
+            document.getElementById(current).style.display = "none";
+            document.getElementById(next).style.display = "block";
+        }
+
+        function approvePrescription() {
+            const symptoms = document.getElementById("reviewSymptoms").value.toLowerCase();
+            const weight = parseFloat(document.getElementById("weight").value);
+            const patientName = document.getElementById("patientName").value;
+            let medication = "No suggestion available. Consult a doctor.";
+
+            if (symptoms.includes("fever") && symptoms.includes("chills")) {
+                medication = weight > 50 ? 
+                    "Artemether-Lumefantrine 80/480mg (2 tablets twice daily for 3 days)" : 
+                    "Artemether-Lumefantrine 40/240mg (1 tablet twice daily for 3 days)";
+            } 
+            else if (symptoms.includes("fever") && symptoms.includes("abdominal pain") && symptoms.includes("diarrhea")) {
+                medication = weight > 50 ? 
+                    "Ceftriaxone 1g IV daily for 5 days or Azithromycin 500mg daily for 5 days" : 
+                    "Ceftriaxone 500mg IV daily for 5 days or Azithromycin 250mg daily for 5 days";
+            } 
+            else if (symptoms.includes("severe cough") && symptoms.includes("difficulty breathing")) {
+                medication = weight > 50 ? 
+                    "Amoxicillin 500mg three times daily for 7 days or Azithromycin 500mg daily for 3 days" : 
+                    "Amoxicillin 250mg three times daily for 7 days or Azithromycin 250mg daily for 3 days";
+            } 
+            else if (symptoms.includes("diarrhea") && symptoms.includes("vomiting") && symptoms.includes("dehydration")) {
+                medication = "ORS (Oral Rehydration Salts) and Zinc tablets 20mg daily for 10 days";
+            } 
+            else if (symptoms.includes("headache")) {
+                medication = weight > 50 ? "Ibuprofen 400mg every 8 hours as needed" : "Ibuprofen 200mg every 8 hours as needed";
+            } 
+            else if (symptoms.includes("stomach pain") || symptoms.includes("indigestion")) {
+                medication = weight > 50 ? "Omeprazole 40mg once daily" : "Omeprazole 20mg once daily";
+            } 
+            else if (symptoms.includes("skin rash") || symptoms.includes("itching")) {
+                medication = weight > 50 ? "Cetirizine 10mg once daily" : "Cetirizine 5mg once daily";
+            } 
+            else if (symptoms.includes("joint pain") && symptoms.includes("rash") && symptoms.includes("fever")) {
+                medication = "Dengue or Chikungunya suspected. Consult a doctor immediately.";
+            }
+
+            document.getElementById("reviewStep").style.display = "none";
+            document.getElementById("medicationStep").style.display = "block";
+            document.getElementById("medicationText").innerText = medication;
+            document.getElementById("patientDisplay").innerText = patientName;
+        }
+
+        function restart() {
+            document.getElementById("goodbyeStep").style.display = "none";
+            document.getElementById("loginStep").style.display = "block";
+        }
+
+        document.getElementById("consultationStep").addEventListener("submit", function() {
+            document.getElementById("reviewPatient").innerText = document.getElementById("patientName").value;
+            document.getElementById("reviewSymptoms").value = document.getElementById("symptoms").value;
+        });
+    </script>
+</body>
+              </html>
