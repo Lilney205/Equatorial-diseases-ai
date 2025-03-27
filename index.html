@@ -42,23 +42,24 @@
         <h2>Doctor Consultation</h2>
         <form onsubmit="suggestMedication(); return false;">
             <textarea id="symptoms" placeholder="Enter Symptoms" required></textarea>
-            <button type="submit" class="btn">Next: Suggest Medication</button>
+            <button type="submit" class="btn">Next: Suggested Medication</button>
         </form>
     </div>
 
-    <!-- Step 4: Doctor's Review -->
-    <div class="step" id="reviewStep" style="display: none;">
-        <h2>Doctor's Review</h2>
-        <p><strong>Review Notes:</strong></p>
-        <textarea id="doctorNotes" placeholder="Doctor's review and additional notes" required></textarea>
-        <button class="btn" onclick="nextStep('reviewStep', 'medicationStep')">Next: Prescription</button>
+    <!-- Step 4: Doctor Approval -->
+    <div class="step" id="approvalStep" style="display: none;">
+        <h2>Doctor's Approval</h2>
+        <p><strong>Recommended Treatment:</strong> <span id="medicationText"></span></p>
+        <textarea id="doctorNotes" placeholder="Doctor's review and final approval" required></textarea>
+        <button class="btn" onclick="nextStep('approvalStep', 'medicationStep')">Approve & Proceed</button>
     </div>
 
     <!-- Step 5: Medication Prescription -->
     <div class="step" id="medicationStep" style="display: none;">
-        <h2>Medication Prescription</h2>
-        <p>Suggested Treatment: <b><span id="medicationText"></span></b></p>
-        <p>Thank you for using our AI-powered hospital system. We wish you a speedy recovery!</p>
+        <h2>Final Prescription</h2>
+        <p>Doctor's Notes: <b><span id="doctorReviewText"></span></b></p>
+        <p>Thank you for using our AI-powered hospital system.</p>
+        <p><strong>We wish you a speedy recovery! Stay healthy.</strong></p>
         <button class="btn" onclick="restart()">Start Over</button>
     </div>
 
