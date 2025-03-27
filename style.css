@@ -1,8 +1,10 @@
-/* General Styles */
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background: url('https://source.unsplash.com/KQfxVDHGCUg/1600x900') no-repeat center center/cover;
+    background: url('https://raw.githubusercontent.com/Lilney205/Equatorial-diseases-ai/main/45538b1e2e3a8d3636a5f483b9631446.jpg') 
+        no-repeat center center/cover;
+    background-size: cover;
     color: white;
     margin: 0;
     padding: 0;
@@ -15,24 +17,28 @@ body {
 
 /* Navbar */
 .navbar {
-    background: rgba(0, 123, 255, 0.8);
     width: 100%;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: center;
-    color: white;
-    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 123, 255, 0.8);
+    padding: 15px;
 }
 
-/* Form Containers */
+.hospital-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+/* Steps Container */
 .step {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
-    width: 90%;
     max-width: 400px;
-    margin: 80px auto 20px;
+    width: 90%;
+    margin: 50px auto;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     color: black;
@@ -41,7 +47,7 @@ body {
 /* Input Fields */
 input, textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -52,37 +58,33 @@ input, textarea {
 .btn {
     background: #28A745;
     color: white;
-    padding: 12px;
+    padding: 10px 15px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    width: 100%;
-    margin-top: 10px;
 }
 
 .btn:hover {
     background: #218838;
 }
 
-.reject {
-    background: #dc3545;
-}
-
-.reject:hover {
-    background: #c82333;
-}
-
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hospital-logo {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+
     .step {
         width: 95%;
+        margin: 20px auto;
         padding: 15px;
-    }
-    
-    .navbar {
-        font-size: 18px;
-        padding: 10px;
     }
 
     input, textarea {
@@ -91,6 +93,5 @@ input, textarea {
 
     .btn {
         font-size: 14px;
-        padding: 10px;
     }
-        }
+}
