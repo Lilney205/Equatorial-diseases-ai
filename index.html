@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Hospital Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Navbar -->
-    <div class="navbar">
-        <img src="https://raw.githubusercontent.com/Lilney205/Equatorial-diseases-ai/main/d29eb99cbe1e1e181a7551ec6416743e.jpg" 
-             alt="Hospital Logo" class="hospital-logo">
-        <h2 class="logo">E-HOSPITAL</h2>
-    </div>
+    <div class="navbar"><h2 class="logo">E-HOSPITAL</h2></div>
 
     <!-- Step 1: Login -->
     <div class="step" id="loginStep">
         <h2>Login</h2>
         <form onsubmit="nextStep('loginStep', 'receptionStep'); return false;">
-            <input type="email" placeholder="Enter your email" required>
-            <input type="password" placeholder="Enter your password" required>
+            <input type="email" placeholder="Enter email" required>
+            <input type="password" placeholder="Enter password" required>
             <button type="submit" class="btn">Login</button>
         </form>
     </div>
@@ -29,10 +21,10 @@
     <div class="step" id="receptionStep" style="display: none;">
         <h2>Patient Reception</h2>
         <form onsubmit="nextStep('receptionStep', 'consultationStep'); return false;">
-            <input type="text" placeholder="Patient Name" required>
-            <input type="number" placeholder="Age" required>
-            <input type="text" placeholder="Phone Number" required>
-            <input type="number" placeholder="Weight (kg)" required>
+            <input type="text" id="patientName" placeholder="Patient Name" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="number" id="weight" placeholder="Weight (kg)" required>
             <button type="submit" class="btn">Next: Consultation</button>
         </form>
     </div>
@@ -40,27 +32,34 @@
     <!-- Step 3: Consultation -->
     <div class="step" id="consultationStep" style="display: none;">
         <h2>Doctor Consultation</h2>
-        <form onsubmit="suggestMedication(); return false;">
+        <form onsubmit="nextStep('consultationStep', 'reviewStep'); return false;">
             <textarea id="symptoms" placeholder="Enter Symptoms" required></textarea>
-            <button type="submit" class="btn">Next: Suggested Medication</button>
+            <button type="submit" class="btn">Next: Doctor's Review</button>
         </form>
     </div>
 
-    <!-- Step 4: Doctor Approval -->
-    <div class="step" id="approvalStep" style="display: none;">
-        <h2>Doctor's Approval</h2>
-        <p><strong>Recommended Treatment:</strong> <span id="medicationText"></span></p>
-        <textarea id="doctorNotes" placeholder="Doctor's review and final approval" required></textarea>
-        <button class="btn" onclick="nextStep('approvalStep', 'medicationStep')">Approve & Proceed</button>
+    <!-- Step 4: Doctor's Review -->
+    <div class="step" id="reviewStep" style="display: none;">
+        <h2>Doctor's Review</h2>
+        <p><b>Patient Name:</b> <span id="reviewPatient"></span></p>
+        <textarea id="reviewSymptoms"></textarea>
+        <button class="btn" onclick="approvePrescription()">Approve</button>
+        <button class="btn reject" onclick="restart()">Reject & Restart</button>
     </div>
 
-    <!-- Step 5: Medication Prescription -->
+    <!-- Step 5: Medication -->
     <div class="step" id="medicationStep" style="display: none;">
-        <h2>Final Prescription</h2>
-        <p>Doctor's Notes: <b><span id="doctorReviewText"></span></b></p>
-        <p>Thank you for using our AI-powered hospital system.</p>
-        <p><strong>We wish you a speedy recovery! Stay healthy.</strong></p>
-        <button class="btn" onclick="restart()">Start Over</button>
+        <h2>Medication Prescription</h2>
+        <p><b>Patient Name:</b> <span id="patientDisplay"></span></p>
+        <p><b>Suggested Treatment:</b> <span id="medicationText"></span></p>
+        <button class="btn" onclick="nextStep('medicationStep', 'goodbyeStep')">Finish</button>
+    </div>
+
+    <!-- Step 6: Goodbye Message -->
+    <div class="step" id="goodbyeStep" style="display: none;">
+        <h2>Thank You!</h2>
+        <p>Thank you for using our AI-powered hospital assistant. Wishing you a quick recovery! Stay healthy!</p>
+        <button class="btn" onclick="restart()">Return to Home</button>
     </div>
 
     <script src="script.js"></script>
