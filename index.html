@@ -18,39 +18,55 @@
     <!-- Home Section -->
     <section id="home">
         <div class="container">
-            <h1>Welcome to E-Hospital Management System</h1>
-            <p>Your trusted digital healthcare solution. We provide seamless patient management, doctor consultations, lab tests, and prescriptions in one integrated platform.</p>
-            <h3>Key Features:</h3>
-            <ul>
-                <li>✅ Efficient Patient Registration & Records</li>
-                <li>✅ Doctor Consultation & Diagnosis</li>
-                <li>✅ Laboratory Testing & Result Management</li>
-                <li>✅ Medication Prescription & Recommendations</li>
-                <li>✅ User-Friendly Interface & Secure Data Management</li>
-            </ul>
-            <p class="cta">"Get started today for a smooth and digitalized hospital experience!"</p>
+            <h1>Welcome to E-Hospital</h1>
+            <p>Your health is our priority. Experience the best digital healthcare system.</p>
         </div>
     </section>
+
+    <!-- Login Form -->
+    <div class="step" id="loginStep">
+        <h2>Login</h2>
+        <form onsubmit="nextStep('loginStep', 'receptionStep'); return false;">
+            <input type="email" placeholder="Enter your email" required>
+            <input type="password" placeholder="Enter your password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+
+    <!-- Patient Reception -->
+    <div class="step" id="receptionStep" style="display: none;">
+        <h2>Patient Reception</h2>
+        <form onsubmit="nextStep('receptionStep', 'consultationStep'); return false;">
+            <input type="text" placeholder="Patient Name" required>
+            <input type="number" placeholder="Age" required>
+            <input type="text" placeholder="Phone Number" required>
+            <input type="number" placeholder="Weight (kg)" required>
+            <button type="submit" class="btn">Next: Consultation</button>
+        </form>
+    </div>
+
+    <!-- Doctor Consultation -->
+    <div class="step" id="consultationStep" style="display: none;">
+        <h2>Doctor Consultation</h2>
+        <form onsubmit="suggestMedication(); return false;">
+            <textarea id="symptoms" placeholder="Enter Symptoms" required></textarea>
+            <button type="submit" class="btn">Next: Suggest Medication</button>
+        </form>
+    </div>
+
+    <!-- Medication Prescription -->
+    <div class="step" id="medicationStep" style="display: none;">
+        <h2>Medication Prescription</h2>
+        <p>Suggested Treatment: <b><span id="medicationText"></span></b></p>
+        <button class="btn" onclick="restart()">Start Over</button>
+    </div>
 
     <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2>About E-Hospital</h2>
-            <p>E-Hospital Management System is designed to enhance healthcare service delivery by simplifying hospital workflows. Our system ensures that patient data is efficiently managed from reception to doctor consultations, lab testing, and medication prescriptions.</p>
-            
-            <h3>Our Mission:</h3>
-            <p>"To revolutionize hospital management through an advanced, user-friendly, and secure digital system."</p>
-            
-            <h3>Our Vision:</h3>
-            <p>"A future where healthcare institutions operate seamlessly with technology, ensuring better patient care and management."</p>
-
-            <h3>Core Values:</h3>
-            <ul>
-                <li>🔹 Efficiency & Accuracy</li>
-                <li>🔹 Data Security & Confidentiality</li>
-                <li>🔹 User-Friendly Interface</li>
-                <li>🔹 Innovation & Continuous Improvement</li>
-            </ul>
+            <p>E-Hospital is a digital healthcare platform providing online medical consultations and prescriptions.</p>
+            <p>Our mission is to provide fast and reliable healthcare services with technology.</p>
         </div>
     </section>
 
