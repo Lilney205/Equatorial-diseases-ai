@@ -5,62 +5,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <div class="navbar">
         <h2 class="logo">E-HOSPITAL</h2>
         <nav>
-            <a href="home.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="user-manual.html">User Manual</a>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </nav>
     </div>
 
-    <!-- Step 1: Login -->
-    <div class="step" id="loginStep">
-        <h2>Login</h2>
-        <form onsubmit="nextStep('loginStep', 'receptionStep'); return false;">
-            <input type="email" placeholder="Enter Email" required>
-            <input type="password" placeholder="Enter your password" required>
-            <button type="submit" class="btn">Login</button>
-        </form>
-    </div>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <h1>Welcome to E-Hospital Management System</h1>
+            <p>Your trusted digital healthcare solution. We provide seamless patient management, doctor consultations, lab tests, and prescriptions in one integrated platform.</p>
+            <h3>Key Features:</h3>
+            <ul>
+                <li>✅ Efficient Patient Registration & Records</li>
+                <li>✅ Doctor Consultation & Diagnosis</li>
+                <li>✅ Laboratory Testing & Result Management</li>
+                <li>✅ Medication Prescription & Recommendations</li>
+                <li>✅ User-Friendly Interface & Secure Data Management</li>
+            </ul>
+            <p class="cta">"Get started today for a smooth and digitalized hospital experience!"</p>
+        </div>
+    </section>
 
-    <!-- Step 2: Reception -->
-    <div class="step" id="receptionStep" style="display: none;">
-        <h2>Patient Reception</h2>
-        <form onsubmit="nextStep('receptionStep', 'consultationStep'); return false;">
-            <input type="text" placeholder="Patient Name" required>
-            <input type="number" placeholder="Age" required>
-            <input type="text" placeholder="Phone Number" required>
-            <input type="number" placeholder="Weight (kg)" required>
-            <button type="submit" class="btn">Next: Consultation</button>
-        </form>
-    </div>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About E-Hospital</h2>
+            <p>E-Hospital Management System is designed to enhance healthcare service delivery by simplifying hospital workflows. Our system ensures that patient data is efficiently managed from reception to doctor consultations, lab testing, and medication prescriptions.</p>
+            
+            <h3>Our Mission:</h3>
+            <p>"To revolutionize hospital management through an advanced, user-friendly, and secure digital system."</p>
+            
+            <h3>Our Vision:</h3>
+            <p>"A future where healthcare institutions operate seamlessly with technology, ensuring better patient care and management."</p>
 
-    <!-- Step 3: Consultation -->
-    <div class="step" id="consultationStep" style="display: none;">
-        <h2>Doctor Consultation</h2>
-        <form onsubmit="suggestMedication(); return false;">
-            <textarea id="symptoms" placeholder="Enter Symptoms" required></textarea>
-            <button type="submit" class="btn">Next: Doctor Review</button>
-        </form>
-    </div>
+            <h3>Core Values:</h3>
+            <ul>
+                <li>🔹 Efficiency & Accuracy</li>
+                <li>🔹 Data Security & Confidentiality</li>
+                <li>🔹 User-Friendly Interface</li>
+                <li>🔹 Innovation & Continuous Improvement</li>
+            </ul>
+        </div>
+    </section>
 
-    <!-- Step 4: Doctor Approval -->
-    <div class="step" id="doctorStep" style="display: none;">
-        <h2>Doctor Review</h2>
-        <p>Suggested Medication: <b><span id="medicationText"></span></b></p>
-        <button class="btn" onclick="approveMedication()">Approve & Proceed</button>
-    </div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p><b>Phone:</b> 0724467190</p>
+            <p><b>Email:</b> <a href="mailto:lilney205@gmail.com">lilney205@gmail.com</a></p>
+            <p><b>WhatsApp:</b> <a href="https://wa.me/0724467190" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon"> Chat with us</a></p>
+        </div>
+    </section>
 
-    <!-- Step 5: Medication Prescription -->
-    <div class="step" id="medicationStep" style="display: none;">
-        <h2>Medication Prescription</h2>
-        <p>Prescribed Treatment: <b><span id="finalMedication"></span></b></p>
-        <p>Thank you for using our AI-powered hospital system. Stay healthy!</p>
-        <button class="btn" onclick="restart()">Start Over</button>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 E-Hospital. All Rights Reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
