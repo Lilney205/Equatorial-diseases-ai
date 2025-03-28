@@ -5,35 +5,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div class="navbar">
         <h2 class="logo">E-HOSPITAL</h2>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="user-manual.html">User Manual</a>
         </nav>
     </div>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="container">
-            <h1>Welcome to E-Hospital</h1>
-            <p>Your health is our priority. Experience the best digital healthcare system.</p>
-        </div>
-    </section>
-
-    <!-- Login Form -->
+    <!-- Step 1: Login -->
     <div class="step" id="loginStep">
         <h2>Login</h2>
         <form onsubmit="nextStep('loginStep', 'receptionStep'); return false;">
-            <input type="email" placeholder="Enter your email" required>
+            <input type="email" placeholder="Enter Email" required>
             <input type="password" placeholder="Enter your password" required>
             <button type="submit" class="btn">Login</button>
         </form>
     </div>
 
-    <!-- Patient Reception -->
+    <!-- Step 2: Reception -->
     <div class="step" id="receptionStep" style="display: none;">
         <h2>Patient Reception</h2>
         <form onsubmit="nextStep('receptionStep', 'consultationStep'); return false;">
@@ -45,47 +37,30 @@
         </form>
     </div>
 
-    <!-- Doctor Consultation -->
+    <!-- Step 3: Consultation -->
     <div class="step" id="consultationStep" style="display: none;">
         <h2>Doctor Consultation</h2>
         <form onsubmit="suggestMedication(); return false;">
             <textarea id="symptoms" placeholder="Enter Symptoms" required></textarea>
-            <button type="submit" class="btn">Next: Suggest Medication</button>
+            <button type="submit" class="btn">Next: Doctor Review</button>
         </form>
     </div>
 
-    <!-- Medication Prescription -->
+    <!-- Step 4: Doctor Approval -->
+    <div class="step" id="doctorStep" style="display: none;">
+        <h2>Doctor Review</h2>
+        <p>Suggested Medication: <b><span id="medicationText"></span></b></p>
+        <button class="btn" onclick="approveMedication()">Approve & Proceed</button>
+    </div>
+
+    <!-- Step 5: Medication Prescription -->
     <div class="step" id="medicationStep" style="display: none;">
         <h2>Medication Prescription</h2>
-        <p>Suggested Treatment: <b><span id="medicationText"></span></b></p>
+        <p>Prescribed Treatment: <b><span id="finalMedication"></span></b></p>
+        <p>Thank you for using our AI-powered hospital system. Stay healthy!</p>
         <button class="btn" onclick="restart()">Start Over</button>
     </div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About E-Hospital</h2>
-            <p>E-Hospital is a digital healthcare platform providing online medical consultations and prescriptions.</p>
-            <p>Our mission is to provide fast and reliable healthcare services with technology.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p><b>Phone:</b> 0724467190</p>
-            <p><b>Email:</b> <a href="mailto:lilney205@gmail.com">lilney205@gmail.com</a></p>
-            <p><b>WhatsApp:</b> <a href="https://wa.me/0724467190" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon"> Chat with us</a></p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 E-Hospital. All Rights Reserved.</p>
-    </footer>
-
     <script src="script.js"></script>
 </body>
-    </html>
+</html>
